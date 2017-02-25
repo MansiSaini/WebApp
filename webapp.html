@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/lib/w3.css">
+<style>
+body {
+  background-color: #f5eff1;
+}
+.mySlides {
+  display:none;
+}
+.btn {
+    background-color:#dab3ff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-left: 26%;
+}
+.w3-content {
+  text-align: center;
+  margin-left:32%;
+}
+.btn-choose {
+    background-color:#cc99ff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 28%;
+}
+</style>
+<body>
+
+<div class="w3-content" style="max-width:800px">
+  <input id="first-image" type="image" class="mySlides" style="width:50%">
+  <input id="second-image" type="image" class="mySlides" style="width:50%">
+  <input id="third-image" type="image" class="mySlides" style="width:50%">
+</div>
+
+<div class="w3-center">
+  <div class="w3-section">
+    <button class="btn" onclick="plusDivs(-1)">Prev</button>
+    <button class="btn" onclick="plusDivs(1)">Next</button>
+  </div> 
+</div>
+
+<input class="btn-choose" type="file" id="myFile">
+
+<script>
+
+var obj = JSON.parse('{ "Images": [{"name":"Apple", "path":"https://staticdelivery.nexusmods.com/mods/110/images/74627-0-1459502036.jpg" },{"name":"Orange","path":"http://bangalorefruits.com/wp-content/uploads/2013/07/orange-02.jpg"}, {"name":"Mango","path":"http://mangomaniafl.net/wp-content/uploads/2014/06/iStock_000012591574Medium.jpg"}]}');
+
+var imageSrc1 = obj.Images[0].path;
+var input = document.getElementById('first-image');
+input.src = imageSrc1;
+
+var imageSrc2 = obj.Images[1].path;
+var input = document.getElementById('second-image');
+input.src = imageSrc2;
+
+var imageSrc3 = obj.Images[2].path;
+var input = document.getElementById('third-image');
+input.src = imageSrc3;
+
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+    for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-red", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-red";
+}
+
+function chooseFilebtn() {
+    var x = document.getElementById("myFile");
+}
+</script>
+</body>
+</html>
